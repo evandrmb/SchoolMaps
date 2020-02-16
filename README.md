@@ -1,5 +1,5 @@
 # School Maps
-This is a flutter project created just to practice. His objective is to display some renowned private schools (just in my opinion) of Teresina - Piauí.
+
 
 
 
