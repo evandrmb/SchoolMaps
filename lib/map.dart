@@ -1,5 +1,6 @@
 import 'package:aprotas/models/school.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MyMap extends StatefulWidget {
@@ -8,7 +9,7 @@ class MyMap extends StatefulWidget {
 }
 
 class _MyMapState extends State<MyMap> {
-  GoogleMapController _controller;
+  // GoogleMapController _controller;
 
   List<Marker> allMarkers = [];
   @override
@@ -26,11 +27,31 @@ class _MyMapState extends State<MyMap> {
     }).toList();
   }
 
+  void _getLocation() async {
+    var currentLocation = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+
+    setState(() {
+      final marker = Marker(
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+        markerId: MarkerId("user_location"),
+        position: LatLng(currentLocation.latitude, currentLocation.longitude),
+        infoWindow: InfoWindow(title: 'Your Location'),
+      );
+      allMarkers.add(marker);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: _getLocation,
+        tooltip: 'Get Location',
+        child: Icon(Icons.flag),
+      ),
       appBar: AppBar(
-        title: Text('Apogeu Rotas'),
+        title: Text('School Routes'),
         centerTitle: true,
       ),
       body: Stack(
@@ -40,7 +61,7 @@ class _MyMapState extends State<MyMap> {
             width: double.infinity,
             child: GoogleMap(
               markers: Set.from(allMarkers),
-              onMapCreated: mapCreated,
+              // onMapCreated: mapCreated,
               initialCameraPosition: CameraPosition(
                   target: LatLng(-5.0891700, -42.8019400), zoom: 12),
             ),
@@ -50,9 +71,9 @@ class _MyMapState extends State<MyMap> {
     );
   }
 
-  void mapCreated(controller) {
-    setState(() {
-      _controller = controller;
-    });
-  }
+  // void mapCreated(controller) {
+  //   setState(() {
+  //     _controller = controller;
+  //   });
+  // }
 }
