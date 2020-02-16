@@ -1,6 +1,11 @@
 # School Maps
 This is a flutter project created just to practice. His objective is to display some renowned private schools (just in my opinion) of Teresina - Piauí.
 
+
+
+
+![Alt text](/assets/screenshot.jpg?raw=true "ScreenShot")
+
 # Dependencies
 This project uses google maps API, so if you wanna use it properly you will have to clone and add the android/app/src/main/AndroidManifest.xml with a API Key
  - Packages
