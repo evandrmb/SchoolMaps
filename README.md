@@ -11,7 +11,7 @@ This project uses google maps API, so if you wanna use it properly you will have
 It was only tested in Android
 
 # Inpirations
-I used the following content to create this project:
+I used the following content to help me create this project:
  - https://medium.com/flutter/google-maps-and-flutter-cfb330f9a245
  - https://www.youtube.com/watch?v=CjhXyY_92xU
  - https://stackoverflow.com/questions/56383795/using-polyline-for-making-custom-route-with-google-maps-flutter-plugin-flutter/56383841#56383841
