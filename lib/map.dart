@@ -9,7 +9,7 @@ class MyMap extends StatefulWidget {
 }
 
 class _MyMapState extends State<MyMap> {
-  // GoogleMapController _controller;
+  GoogleMapController _controller;
 
   List<Marker> allMarkers = [];
   @override
@@ -33,7 +33,7 @@ class _MyMapState extends State<MyMap> {
 
     setState(() {
       final marker = Marker(
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
         markerId: MarkerId("user_location"),
         position: LatLng(currentLocation.latitude, currentLocation.longitude),
         infoWindow: InfoWindow(title: 'Your Location'),
@@ -61,7 +61,7 @@ class _MyMapState extends State<MyMap> {
             width: double.infinity,
             child: GoogleMap(
               markers: Set.from(allMarkers),
-              // onMapCreated: mapCreated,
+              onMapCreated: mapCreated,
               initialCameraPosition: CameraPosition(
                   target: LatLng(-5.0891700, -42.8019400), zoom: 12),
             ),
@@ -71,9 +71,9 @@ class _MyMapState extends State<MyMap> {
     );
   }
 
-  // void mapCreated(controller) {
-  //   setState(() {
-  //     _controller = controller;
-  //   });
-  // }
+  void mapCreated(controller) {
+    setState(() {
+      _controller = controller;
+    });
+  }
 }
